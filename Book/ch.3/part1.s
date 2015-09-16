@@ -4,5 +4,5 @@
 	.global _start
 
 _start:
-	mov r0, #65
+	mov r0, #34
 	bal _part2	@ branching always
