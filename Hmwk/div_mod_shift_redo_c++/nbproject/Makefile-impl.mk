@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=div_mod_shift_redo
+PROJECTNAME=div_mod_shift_redo_c++
 
 # Active Configuration
 DEFAULTCONF=Debug
