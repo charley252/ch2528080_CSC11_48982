@@ -26,25 +26,32 @@ _shift:				@shift right one time
 	mov r3, r3, lsr #1
 	mov r4, r4, lsr #1
 
+
+	/* --------start of nested loop---------- */
 _loop2:				@outer while loop
 	cmp r0, r3
-	bge _add
-	b   _else
+	blt _else
+
 
 _add:
 	add r1, r1, r2
 	sub r0, r0, r3
-	b _shiftloop
+	bal  _shiftloop
 
 _shiftloop:			@inner shift loop
-	cmp r3, r4
-	bne _execute
-
+	cmp r2, #1
+	beq _loop2
+	cmp r3, r0
+	ble _loop2
+	
+	
 _execute:
 	mov r2, r2, lsr #1
 	mov r3, r3, lsr #1
-	b _loop2
+	bal _shiftloop
 	
+	
+	/* -----------output--------------- */
 _else:
 	mov r0, r1		@move quotient to print
 	mov r7, #1
