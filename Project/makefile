@@ -1,20 +1,13 @@
-PROGRAMS = test1
+#makefile
 
-# If we've supplied a goal on the command line
-# then add this to the list of programs we
-# already know about.
-ifneq ($(MAKECMDGOALS),)
-PROGRAMS = $(MAKECMDGOALS)
-endif
+all: load
 
-# The default rule if none specified on the
-# command line
-all: $(PROGRAMS)
+load: load.o
+	gcc -o $@ $+
 
-# Make knows how to compile .s files, so all
-# we need to do is link them.
-$(PROGRAMS): % : %.o
-	ld -o $@ $<
+load.o: load.s
+	as -o $@ $<
 
 clean:
-	rm -f *.o $(PROGRAMS)
+	rm -vf *.o
+
