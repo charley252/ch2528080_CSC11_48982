@@ -1,0 +1,24 @@
+.balign 4
+return2: .word 0
+
+.text
+
+funct1:
+	ldr r1, address_of_return2
+	str lr, [r1]
+
+	
+
+
+
+
+
+
+
+
+	ldr lr, address_of_return2
+	ldr lr, [lr]
+	bx lr
+
+address_of_return2: .word return2
+

@@ -1,0 +1,76 @@
+	
+
+.data
+
+.balign 4
+range: .asciz "Input begining and end of temperature range."
+
+.balign 4
+choiceC: .asciz "If range is degree Centigrade, press 1."
+
+.balign 4
+choiceF: .asciz "If range is degree Fahrenhiet, press 2."
+
+.balign 4
+outmessage1: .asciz "Display degree Centigrade to degree Fahrenheit."
+
+.balign 4
+outmessage2: .asciz "Fahrenhiet     Centigrade"
+
+.balign 4
+read_range: .word 0
+
+.balign 4
+read_choice: .word 0
+
+.balign 4
+scan: asciz "%d"
+
+.balign 4
+return: .word 0
+
+.text
+
+.global main
+@.func main
+
+main:
+	ldr r1, address_of_return
+	str lr, [r1]
+
+	ldr r0, address_of_range
+	bl printf
+	@bl puts
+	b menu
+
+menu:	
+	ldr r0, address_of_scan
+	ldr r1, address_of_read_input
+	bl scanf
+
+	
+prob1:
+
+
+
+
+prob2:
+
+
+
+	ldr r1, address_of_return
+	ldr lr, [r1]
+	bx lr
+
+address_of_range: .word range
+address_of_choiceC: .word choiceC
+address_of_choiceF: .word choiceF
+address_of_outputmessage1: .word outputmessage1
+address_of_outputmessage2: .word outputmessage2
+address_of_read_: .word read_input
+address_of_scan: .word scan
+address_of_return: .word return
+
+.global printf
+.global scanf
+@.global puts

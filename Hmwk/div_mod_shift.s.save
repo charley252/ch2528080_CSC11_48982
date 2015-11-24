@@ -1,0 +1,31 @@
+/* division using bit shifting technique */
+
+	.global _start
+
+_start:
+	mov r0, #0		@to contain answer(quotient), via accumulate
+	mov r1, #45		@dividend
+	mov r2, #6		@divisor
+	mov r3, #1		@bit to shift
+
+_loop:
+	cmp   r2, r1		@compare divisor to dividend, set flag
+	movls r2, r2, lsl#1	@if divisor is less than or equal to dividend, left shift
+	movls r3, r3, lsl#1
+	bls   _loop
+
+
+_sub:
+	cmp	r1, r2
+	subcs	r1, r1, r2
+	addcs	r0, r0, r3
+	movs	r3, r3, lsr#1
+	movcc	r2, r2, lsr#1
+	bcc	_sub
+
+_exit:
+	mov r7, #1
+	swi 0
+
+
+
